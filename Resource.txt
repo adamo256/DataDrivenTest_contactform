@@ -1,0 +1,25 @@
+*** Settings ***      
+Library    SeleniumLibrary 
+*** Keywords ***
+Insert Customer Service
+    [Arguments]    ${Subject}    ${Email}    ${Order}    ${Message}    ${Result}   
+    Reload Page
+    Select From List By Label    ${P_TypeOfSubject}    ${Subject}
+    Input Text    ${P_Email}     ${Email}
+    Input Text    ${P_Order}     ${Order}
+    Input Text    ${P_Message}     ${Message}
+    Click Button    ${P_SendMessage} 
+    Sleep    2s    # Test Case 4 vymyslet lepsi pole  
+    Page Should Contain    ${Result}    
+Open Browser and Maximaze
+    Open Browser    http://automationpractice.com/index.php?controller=contact    chrome
+    Maximize Browser Window
+Capture Screenshot And Close Browser
+    Capture Page Screenshot
+    Close Browser      
+*** Variables ***
+${P_TypeOfSubject}    id=id_contact
+${P_Email}    id=email
+${P_Order}    name=id_order
+${P_Message}    id=message
+${P_SendMessage}    id=submitMessage
